@@ -30,7 +30,9 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.bLogin)
         userName = findViewById(R.id.tietUsername)
         password = findViewById(R.id.tietPassword)
-        userNameLabel = findViewById(R.id.tvUserLabel)
+
+        // jump to song list screen
+        goToSongListScreen()
 
         button.setOnClickListener {
             if (userName.text.toString() == "eduardo" && password.text.toString() == "growup")
@@ -40,10 +42,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun incrementButtonValue() {
-        // quando clicar no botão, mudar o texto dele e adicionar 1
-        button.text = if (counter == 1) "Clicou $counter vez"
-        else "Clicou $counter vezes"
+    private fun goToSongListScreen() {
+        val intent = Intent(this, SongListActivity::class.java)
+        startActivity(intent)
     }
 }
 
