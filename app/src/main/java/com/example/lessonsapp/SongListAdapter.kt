@@ -4,12 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 
-class SongListAdapter(private val context: Context, private val list: List<SongModel>) : ArrayAdapter<SongModel>(context, R.layout.it_song_list, list) {
+class SongListAdapter(
+    private val context: Context,
+    private val list: List<SongModel>,
+    private val onClickListener: (songModel: SongModel) -> Unit,
+) : ArrayAdapter<SongModel>(context, R.layout.it_song_list, list) {
 
     @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -33,6 +38,11 @@ class SongListAdapter(private val context: Context, private val list: List<SongM
 
         // colocando o artista do elemento[i] da lista no Textview
         songArtist.text = song.artist
+
+        // passar o que acontece quando clica em uma view
+        view.setOnClickListener {
+            onClickListener(song)
+        }
 
         return view
     }

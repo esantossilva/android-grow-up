@@ -8,13 +8,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Recycler
 
 class SongListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_list)
 
-        val listView: ListView = findViewById(R.id.lvSongList)
+        val recyclerView: RecyclerView = findViewById(R.id.rvSongList)
+
 
         val songList = listOf(
             SongModel("Numb", "Linkin Park", "Meteora", R.drawable.linkin_park),
@@ -25,9 +29,16 @@ class SongListActivity : AppCompatActivity() {
             SongModel("Título 6", "Artista 6", "Álbum 6", R.drawable.the_weeknd),
             SongModel("Título 7", "Artista 7", "Álbum 7", R.drawable.linkin_park),
         )
+        // Adapter de ListView
+        val adapter = SongRecyclerAdapter(this, songList) {
+            showMessage(this, "clicou na música: ${it.title}")
+        }
 
-        val adapter = SongListAdapter(this, songList)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        listView.adapter = adapter
+        recyclerView.apply {
+            this.adapter = adapter
+            this.layoutManager = layoutManager
+        }
     }
 }

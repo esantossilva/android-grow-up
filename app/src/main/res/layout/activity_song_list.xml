@@ -8,8 +8,8 @@
     android:padding="8dp"
     tools:context=".SongListActivity">
 
-    <ListView
-        android:id="@+id/lvSongList"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSongList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
