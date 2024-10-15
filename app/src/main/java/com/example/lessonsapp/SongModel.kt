@@ -1,4 +1,8 @@
 package com.example.lessonsapp
 
-class SongModel {
-}
+data class SongModel (
+    val title: String,
+    val artist: String,
+    val album: String,
+    val image: Int,
+)
